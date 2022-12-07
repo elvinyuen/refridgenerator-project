@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin =
@@ -50,8 +50,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Refrigenerator',
       filename: 'index.html',
-      template: 'src/template.html',
+      template: 'src/index.html',
     }),
     new BundleAnalyzerPlugin(),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };

@@ -10,7 +10,11 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.resolve(__dirname, 'client')));
+// handler for requests for static files
+app.use(express.static(path.resolve(__dirname, '../dist')));
+
+//define route handlers here
+app.use('/');
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
