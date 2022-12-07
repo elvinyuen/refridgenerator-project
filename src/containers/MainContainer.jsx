@@ -4,37 +4,37 @@
  * @module  MainContainer
  * @author
  * @date
- * @description stateful component that renders ////// TotalsDisplay and MarketsContainer
+ * @description stateful container
  *
  * ************************************
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
-//  import TotalsDisplay from '../components/TotalsDisplay';
-//  import MarketsContainer from './MarketsContainer';
-import * as actions from '../actions/actions';
+import React, { useState, useEffect } from 'react';
+import Ingredients from '../components/Ingredients';
 
-const mapStateToProps = ({
-  markets: { totalCards, totalMarkets, synced },
-}) => ({
-  totalCards,
-  totalMarkets,
-  synced,
-});
+function MainContainer() {
+  const [ingredients, setIngredients] = useState([]);
 
-const mapDispatchToProps = (dispatch) => ({
-  syncMarkets: () => dispatch(actions.syncMarkets()),
-});
+  useEffect(() => {
+    fetch('http://localhost:8080/api/')
+      .then((res) => res.json())
+      .then((ingredientsData) => {
+        setIngredients(ingredientsData);
+      })
+      .catch((err) => console.log('error getting ingredients data', err));
+  }, []);
 
-const MainContainer = (props) => (
-  <div className="container">
-    <div className="outerBox">
-      <h1 id="header">MegaMarket Loyalty Cards</h1>
-      <TotalsDisplay {...props} />
-      <MarketsContainer />
+  return (
+    <div className="container">
+      <div className="outerBox">
+        <h3>What's in your fridge?</h3>
+        <Ingredients ingredientsData={ingredients} />
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+// const MainContainer = (props) => (
+// );
+
+export default MainContainer;

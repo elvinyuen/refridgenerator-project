@@ -5,20 +5,20 @@ const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: { bundle: path.resolve(__dirname, 'src/index.js') },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name][contenthash].js',
+    filename: 'bundle.js',
     clean: true,
     assetModuleFilename: '[name][ext]',
   },
   devtool: 'source-map',
-  mode: 'development',
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
-    port: 3000,
+    port: 8080,
     open: true,
     hot: true,
     compress: true,
@@ -48,7 +48,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Refrigenerator',
+      title: 'Refrigenerator App',
       filename: 'index.html',
       template: 'src/index.html',
     }),
