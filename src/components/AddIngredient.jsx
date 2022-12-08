@@ -43,7 +43,7 @@ const AddIngredient = () => {
 
   // const itemHandleChange = (event) => {
   //   console.log(event.target.value);
-    // setIngredients(event.target.value);
+  // setIngredients(event.target.value);
   //   console.log('newIngredient with item: ', newIngredient);
   // };
   // const quantityHandleChange = (event) => {
@@ -108,60 +108,64 @@ const AddIngredient = () => {
   };
 
   return (
-    <div>
+    <div className="innerbox" id="addIngredient">
       <h3>Add an Ingredient</h3>
       <form onSubmit={handleFormSubmit}>
-        <label>
-          Type:
-          <select
-            name="type"
-            id="type"
-            value={type}
-            onChange={(event) => setType(event.target.value)}
-          >
-            <option>Select One:</option>
-            <option value="vegetable">Vegetable</option>
-            <option value="meat">Meat</option>
-            <option value="dairy">Dairy</option>
-            <option value="grain">Grain</option>
-          </select>
-        </label>
-        <br />
+        <div>
+          <label>
+            Type:
+            <select
+              name="type"
+              id="type"
+              value={type}
+              onChange={(event) => setType(event.target.value)}
+            >
+              <option>Select One:</option>
+              <option value="vegetable">Vegetable</option>
+              <option value="meat">Meat</option>
+              <option value="dairy">Dairy</option>
+              <option value="grain">Grain</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>
+            Item:
+            <input
+              name="item"
+              id="item"
+              value={item}
+              onChange={(event) => setItem(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Quantity:
+            <input
+              name="quantity"
+              id="quantity"
+              value={quantity}
+              onChange={(event) => setQuantity(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Unit:
+            <input
+              name="unit"
+              id="unit"
+              value={unit}
+              onChange={(event) => setUnit(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <input id="formButton" type="submit" value="Add Ingredient" />
+        </div>
 
-        <label>
-          Item:
-          <input
-            name="item"
-            id="item"
-            value={item}
-            onChange={(event) => setItem(event.target.value)}
-          />
-        </label>
-        <br />
-
-        <label>
-          Quantity:
-          <input
-            name="quantity"
-            id="quantity"
-            value={quantity}
-            onChange={(event) => setQuantity(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Unit:
-          <input
-            name="unit"
-            id="unit"
-            value={unit}
-            onChange={(event) => setUnit(event.target.value)}
-          />
-        </label>
-
-        <br />
-        <input id="formButton" type="submit" value="Add Ingredient" />
-        {/* 
+        {/*         
         <button
           id="add-ingredient"
           className="primary"

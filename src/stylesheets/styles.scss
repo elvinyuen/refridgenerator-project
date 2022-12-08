@@ -1,11 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-$primary-color: #3c59ff;
+$primary-color: #68cef68a;
 $secondary-color: #f4f4f4;
+
+$primary-font-color: #343a40;
+$secondary-font-color: #6c757d;
+$third-font-color: #ced4da;
+
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
 
 * {
   box-sizing: border-box;
+  color: $secondary-font-color;
+}
+
+h1,
+h2,
+h3 {
+  color: $primary-font-color;
+}
+
+label {
+  font-weight: bold;
 }
 
 body {
@@ -23,27 +39,79 @@ body {
 
 .mainContainer {
   display: flex;
+  div {
+    margin: 5px;
+  }
 }
 
-.container {
+.leftBox,
+.rightBox {
   background-color: $secondary-color;
   border-radius: 10px;
   box-shadow: $box-shadow;
-  //   padding: 50px 20px;
-  //   text-align: center;
-  max-width: 100%;
-  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#food {
+.leftBox {
+  width: 300px;
+  max-height: 500px;
+}
+
+.rightBox {
+  width: 900px;
+  max-width: 100%;
+}
+
+.innerbox {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  min-width: 250px;
+  input,
+  select {
+    width: 100px;
+    float: right;
+    padding-left: 5px;
+  }
+  label {
+  }
+}
+
+#fridgeimg {
+  width: 100px;
+}
+
+#ingredientsBox {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-#ingredient {
-  width: 200px;
+.ingredientcard {
+  background-color: white;
+  width: 275px;
+  max-width: 100%;
   height: 250px;
-  border: 1px red solid;
+  padding: 10px;
+  border: 1px $third-font-color solid;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  display: flex;
+
+  img {
+    max-width: 48%;
+    max-height: 48%;
+  }
+}
+
+button {
+  border-radius: 5px;
 }
 
 // h3 {

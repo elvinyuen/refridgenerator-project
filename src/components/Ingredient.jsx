@@ -10,14 +10,16 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Ingredient = ({ ingredientsData }) => {
   // console.log('ingredientsData in the Ingredient is: ', ingredientsData);
   // declare a state here to store the id of the ingredient card that was just clicked
   const [id, setId] = useState([]);
+  const history = useHistory();
+
   // declare a function that handles your onclick here
-  const deleteClickHandler = async (event) => {
+  const deleteClickHandler = (event) => {
     setId(event.target.id);
 
     fetch('http://localhost:3000/api/', {
@@ -31,9 +33,28 @@ const Ingredient = ({ ingredientsData }) => {
       .then((data) => {
         console.log(data);
       })
+      .then(() => {
+        history.push('/');
+      })
       .catch((err) =>
         console.log('DeleteIngredient fetch DELETE FROM api: ERROR: ', err)
       );
+  };
+
+  const imgObj = {
+    avocado: 'https://i.imgur.com/RUqmOxW.jpg',
+    beef: 'https://i.imgur.com/vQk0VQG.jpg',
+    broccoli: 'https://i.imgur.com/EVZZ7mO.png',
+    bread: 'https://i.imgur.com/qV3iRTu.jpg',
+    cheese:
+      'https://thumbs.dreamstime.com/b/isolated-kawaii-cheese-icon-fill-design-food-restaurant-menu-dinner-lunch-cooking-meal-theme-vector-illustration-163853574.jpg',
+    chicken: 'https://i.imgur.com/EqAKEID.png',
+    chili: 'https://i.imgur.com/YcdoWDj.png',
+    milk: 'https://i.imgur.com/YfPgO8O.png',
+    peas: 'https://image.spreadshirtmedia.net/image-server/v1/designs/157487864,width=178,height=178.png',
+    pork: 'https://i.imgur.com/EIMvo5c.png',
+    potato:
+      'https://www.seekpng.com/png/full/6-61293_kawaii-potato-by-hashtagpony-d7xbs1t-cartoon-potato-transparent.png',
   };
 
   // fetch method with delete
@@ -48,20 +69,29 @@ const Ingredient = ({ ingredientsData }) => {
           console.log(event.target);
         };
 
+        const imgURL = imgObj[item];
+        console.log(imgURL);
+
         return (
           <div className="ingredientcard" id={id} key={id}>
             <div>
-              <p>Item: {item}</p>
-              <p>Type: {type}</p>
-              <p>Quantity: {quantity}</p>
-              <p>Unit: {unit}</p>
-              <p>Date: {date.slice(0, 10)}</p>
+              <label>Item:</label> {item}
+              <br />
+              <label>Type:</label> {type}
+              <br />
+              <label>Quantity:</label> {quantity}
+              <br />
+              <label>Unit: </label> {unit}
+              <br />
+              <label>Date: </label> {date.slice(0, 10)}
+              <br />
               {/* need to add an onclick feature for this */}
-              <button onClick={deleteClickHandler} id={id}>
-                Delete
-              </button>
               {/* count how many veggies/meat/dairy/grain */}
+              <button onClick={deleteClickHandler} id={id}>
+                Remove
+              </button>
             </div>
+            <img src={imgURL} alt="" className="ingredientImg" />
           </div>
         );
       })}

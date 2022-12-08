@@ -13,7 +13,7 @@ import React, { useState, useEffect } from 'react';
 import Ingredients from '../components/Ingredients';
 import FoodContainer from './FoodContainer';
 import AddIngredient from '../components/AddIngredient';
-import fridgePic from '../assets/kawaii_fridge';
+import fridge from '../assets/kawaii_fridge.jpg';
 
 function MainContainer() {
   const [ingredients, setIngredients] = useState([]);
@@ -39,7 +39,7 @@ function MainContainer() {
     <div className="mainContainer">
       <div className="leftBox">
         <h3>What's in your fridge?</h3>
-        <img src={fridgePic} alt="" />
+        <img src={fridge} alt="" id="fridgeimg" />
         <Ingredients ingredientsData={ingredients} />
         <AddIngredient />
         {/* <form>
@@ -48,6 +48,7 @@ function MainContainer() {
         </form> */}
       </div>
       <div className="rightBox">
+        <h3>Fresh Ingredients</h3>
         <FoodContainer ingredientsData={ingredients} />
       </div>
     </div>

@@ -14,10 +14,11 @@ import Ingredient from '../components/Ingredient';
 
 Ingredient;
 const FoodContainer = ({ ingredientsData }) => {
-    
   return (
-    <div className="container" id="food">
-      <Ingredient ingredientsData={ingredientsData} />
+    <div className="foodContainer" id="food">
+      <div classname="ingredientsContainer" id="ingredientsBox">
+        <Ingredient ingredientsData={ingredientsData} />
+      </div>
     </div>
   );
 };
