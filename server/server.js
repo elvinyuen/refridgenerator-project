@@ -1,7 +1,10 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+
+const apiRouter = require('./routes/api');
 
 // require / import the controller file
 const refrigeneratorController = require('./controllers/refrigeneratorController');
@@ -12,15 +15,13 @@ const PORT = 3000;
 // parse JSON from incoming request
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // request handler for static files
 app.use(express.static(path.resolve(__dirname, '../src')));
 
 //define route handlers here
-app.get('/api', (req, res) => res.status(200).json(res.locals.ingredients));
-// app.use('/', (req, res) => {
-//   res.status(200).json(res.locals.ingredients);
-// });
+app.use('/api', apiRouter);
 
 //catch-all router handler for any requests to an unknown route (404)
 app.use('*', (req, res) =>

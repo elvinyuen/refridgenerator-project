@@ -3,18 +3,43 @@ const db = require('../models/refrigeneratorModels');
 const refrigeneratorController = {};
 
 // query the database on a GET request for ingredients
-refrigeneratorController.getIngredients = (req, res, next) => {
+refrigeneratorController.getIngredients = async (req, res, next) => {
   // add code for SQL query here
-  const SQLQuery = 'SELECT';
+  const SQLQuery = 'SELECT * FROM ingredients';
 
   db.query(SQLQuery)
     .then((queryResults) => {
-      res.locals.characters = queryResults.rows;
+      console.log('queryResults is: ', queryResults.rows);
+      res.locals.ingredients = queryResults.rows;
       return next();
     })
     .catch((err) =>
       next({
         log: 'refrigeneratorController.getIngredients: ERROR: Issue querying database.',
+        status: 500,
+        message: { err },
+      })
+    );
+};
+
+refrigeneratorController.postIngredient = (req, res, next) => {
+  const { item, type, quantity, unit, date } = req.body;
+  // this is a test post delete when done
+
+
+  const SQLQuery = `
+  INSERT INTO ingredients (item, type, quantity, unit, date)
+  VALUES ($1, $2, $3, $4, $5)`;
+
+  const params = [item, type, quantity, unit, date];
+  db.query(SQLQuery, params)
+    .then((queryData) => {
+      console.log('posting completed! returned data from INSERT: ', queryData);
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: 'refrigeneratorController.postIngredient: ERROR: Issue posting to database.',
         status: 500,
         message: { err },
       })

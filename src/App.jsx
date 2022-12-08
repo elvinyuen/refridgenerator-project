@@ -22,7 +22,9 @@ import './stylesheets/styles.scss';
 const App = () => (
   <main>
     <div className="app">
-      <h1 id="header">Refrigenerator App</h1>
+      <header>
+        <h1 id="header">Refrigenerator App</h1>
+      </header>
       <MainContainer />
     </div>
   </main>

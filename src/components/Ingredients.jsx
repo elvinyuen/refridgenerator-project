@@ -12,11 +12,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Ingredients = ({ totalIngredients }) => (
+const Ingredients = ({ ingredientsData }) => (
   <div className="ingredientsbox" id="ingredients">
     <div>
-      <h1>hi this is ingredients</h1>
-      {/* <p>'Total Ingredients: ' {totalIngredients}</p> */}
+      <p>Total Ingredients: {ingredientsData.length}</p>
+      {/* count how many veggies/meat/dairy/grain */}
     </div>
   </div>
 );

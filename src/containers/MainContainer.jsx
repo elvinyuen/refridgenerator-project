@@ -11,24 +11,42 @@
 
 import React, { useState, useEffect } from 'react';
 import Ingredients from '../components/Ingredients';
+import FoodContainer from './FoodContainer';
+import AddIngredient from '../components/AddIngredient';
 
 function MainContainer() {
   const [ingredients, setIngredients] = useState([]);
 
+  function handleClick() {
+    // should have the state to send back the data
+    // access the data
+    // map the array to create new div for each ingredient
+  }
+
+  // this is effectively the same as ComponentDidMount(fetching data)
   useEffect(() => {
-    fetch('http://localhost:8080/api/')
+    fetch('http://localhost:3000/api/')
       .then((res) => res.json())
       .then((ingredientsData) => {
         setIngredients(ingredientsData);
       })
       .catch((err) => console.log('error getting ingredients data', err));
   }, []);
+  // console.log('ingredients data is: ', ingredients);
 
   return (
-    <div className="container">
-      <div className="outerBox">
+    <div className="mainContainer">
+      <div className="leftBox">
         <h3>What's in your fridge?</h3>
         <Ingredients ingredientsData={ingredients} />
+        <AddIngredient />
+        {/* <form>
+          <input type="text"></input>
+          <button onClick={handleClick}></button>
+        </form> */}
+      </div>
+      <div className="rightBox">
+        <FoodContainer ingredientsData={ingredients} />
       </div>
     </div>
   );
