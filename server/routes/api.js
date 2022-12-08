@@ -12,4 +12,8 @@ router.post('/', refrigeneratorController.postIngredient, (req, res) => {
   return res.status(200).json({});
 });
 
+router.delete('/', refrigeneratorController.deleteIngredient, (req, res) => {
+  return res.status(200).json({});
+});
+
 module.exports = router;
