@@ -1,8 +1,7 @@
 const { Pool } = require('pg');
 
-// import in elephant SQL database URI
-const PG_URI =
-  'postgres://gvdlvjno:2KxU0h7uBpnDuw3h7zYGOQlfJsmZqUp3@tiny.db.elephantsql.com/gvdlvjno';
+// add dabase URI below
+const PG_URI = '';
 
 // create a new pool here using the connection string above
 const pool = new Pool({
